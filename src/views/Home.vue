@@ -24,7 +24,8 @@
           {{ $t('timeToVisit', {getCurrentWaitingTime: getCurrentWaitingTime(shop.id)}) }}</p>
         <p v-if="currentUser.role === 'Administrator' && situations.length > 0">
           {{ $t('Situation', {getSituation: situations}) }}</p>
-        <p v-if="currentUser.role === 'Administrator' && situations.length === 0">{{ $t('everythingOk') }}</p>
+        <p v-if="currentUser.role === 'Administrator' && situations.length === 0">
+          {{ $t('everythingOk') }}</p>
 
         <a v-if="currentUser.role === 'Customer'"
            :href="'/reservations/add/' + shop.id"
@@ -89,13 +90,17 @@ export default {
     UserService.getAllCheckouts().then(
         response => {
           let checkouts = response.data.filter(x => x.shop === this.$store.state.auth.user.user.shop);
+
+
+          console.log(checkouts)
           UserService.getSituation(this.$store.state.auth.user.user.shop).then(
               response => {
                 let obj = response.data
+                console.log(obj)
                 for (let key of Object.keys(obj)) {
-                  this.situations += `Problems in ${checkouts.find(x => x.id == key).title} with ${obj[key]} people\n`
-
+                  this.situations += `Problems in ${key} with ${obj[key]} people\n`
                 }
+                console.log(this.situations)
               },
               error => {
                 console.log(

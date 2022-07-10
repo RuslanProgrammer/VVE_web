@@ -1,11 +1,11 @@
 import Vue from "vue";
-import VueI18n from "vue-i18n"; //Импорт установленного пакета
+import VueI18n from "vue-i18n";
 
 Vue.use(VueI18n);
 
 function loadLocaleMessages() {
     const locales = require.context(
-        "@/locales", // Путь к папке с нашими json файлами локализации
+        "@/locales",
         true,
         /[A-Za-z0-9-_,\s]+\.json$/i
     );
@@ -20,7 +20,7 @@ function loadLocaleMessages() {
     return messages;
 }
 
-function checkDefaultLanguage() { //Определяем язык браузера
+function checkDefaultLanguage() {
     let matched = null;
     let languages = Object.getOwnPropertyNames(loadLocaleMessages());
     languages.forEach(lang => {

@@ -36,9 +36,6 @@
             this.workers.find(x => x.id === currentCheckout.worker).name + " " + this.workers.find(x => x.id === currentCheckout.worker).surname
           }}
         </div>
-        <!--        <div>-->
-        <!--          <label><strong>Status:</strong></label> {{ currentCheckout.published ? "Published" : "Pending" }}-->
-        <!--        </div>-->
 
         <a v-if="currentUser.role === 'Administrator'"
            :href="'/checkouts/' + currentCheckout.id"
